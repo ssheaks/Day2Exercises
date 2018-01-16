@@ -1,9 +1,13 @@
+'use strict';
+
+//Functions as arguments drill (1)
 function repeat(fn, n) {
   for (let i = 0; i < n; i++) {
     fn();
   }
 }
 
+//Functions as arguments (2)
 function hello() {
   console.log('Hello world');
 }
@@ -23,7 +27,7 @@ const filteredNames = filter(myNames, function (name) {
   return name[0] === 'R';
 });
 
-console.log(filteredNames) // => ['Rich', 'Ray']
+console.log(filteredNames); // => ['Rich', 'Ray']
 // <---- DO NOT EDIT BETWEEN THESE LINES
 
 // TASK: DEFINE YOUR FILTER FUNCTION BELOW:
@@ -38,6 +42,7 @@ function filter(arr, fn) {
   return newArray;
 }
 
+//Functions as return values
 // rocksWarning('Main St and Pacific Ave');
 // // => DANGER There is a Rocks on the Road hazard at Main St and Pacific Ave
 // // => The Rocks on the Road hazard has triggered 1 time(s) today!
@@ -63,5 +68,55 @@ console.log(rocksWarning('Street'));
 const surfWarning = hazardWarningCreator('Tidal wave warning!');
 console.log(surfWarning('La Jolla'));
 
-const missileWarning = hazardWarningCreator('Don\'t let that guy push the button!')
+const missileWarning = hazardWarningCreator('Don\'t let that guy push the button!');
 console.log(missileWarning('Control Room'));
+
+//forEach, filter and map
+
+let steps = [
+  [0, 0],
+  [0, 5],
+  [-1, -3],
+  [-3, 1],
+  [2, -4],
+  [3, 2]
+];
+const filteredArr = steps.filter(pair => pair[0] >= 0 && pair[1] >= 0);
+// const reducer = (accumulator, currentValue) => accumulator + currentValue;
+const sumMovement = filteredArr.map(pair => pair[0] + pair[1]);
+// const totalSteps = sumMovement.reduce(reducer);
+
+console.log(filteredArr);
+console.log(sumMovement);
+// console.log(totalSteps);
+
+const totalSteps = sumMovement.forEach(movement => {
+  console.log(`Movement: ${movement}`);
+});
+console.log(totalSteps);
+
+// REDUCE
+const msg = 'noggin oreo the moon time tele steed his tent apollo her lives though shoo tofu budapest';
+const ans = 'NO NEED TO SHOUT'
+let decodeMsg = [];
+
+const msgSplit = msg.split(' ');
+// console.log(msgSplit[2]);
+
+// const reducer = (accumulator, currentValue) => accumulator + currentValue;
+// console.log(msgSplit);
+// console.log(msgSplit[2].slice(-1));
+
+
+// console.log(msgSplit[msgSplit.length-1]);
+
+let sum = msgSplit.reduce(function (myMsg, word) {
+  if (word.length === 3) {
+    myMsg += ' ';
+  } else {
+    myMsg += word[word.length - 1].toUpperCase();
+  }
+  return myMsg;
+}, ' ');
+// sum is 6
+console.log(sum);
